@@ -7,7 +7,7 @@ import os
 # Your custom settings that you can overwrite
 class Settings:
     devices = [
-        Boiler('boiler')
+        Boiler('boiler'),
     ]
     storage_dir = os.environ.get("STORAGE_DIR", "data")
     timezone = "Europe/Vienna"
