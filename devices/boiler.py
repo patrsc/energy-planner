@@ -3,11 +3,13 @@ from core import Device, Plan, Event
 
 
 class Boiler(Device):
-    def plan(self, start_time: datetime, prices: list[float]) -> Plan:
+    def plan(self, start_time: datetime, prices: list[float] | None) -> Plan:
         """Execute planning."""
+        if prices is None:
+            return self.fallback_plan(start_time)
         # Turn on boiler for consecutively 3 hours
         # First hour has higher weight because boiler is more likely heating in the beginning
-        weights = [1.0, 0.7, 0.4]
+        weights = [1.0, 0.7, 0.3]
         turn_on_hours = len(weights)
         n_hours = len(prices)
 
@@ -25,5 +27,15 @@ class Boiler(Device):
             Event(time=start_time + timedelta(hours=best_start_hour), state="on"),
             Event(time=start_time + timedelta(hours=best_end_hour), state="off"),
         ]
-        plan = Plan(events=events)
+        plan = Plan(info="optimal", events=events)
         return plan
+
+    def fallback_plan(self, start_time: datetime):
+        """Make a fallback plan if no prices are available."""
+        on_time = start_time.replace(hour=12)
+        off_time = on_time + timedelta(hours=3)
+        events = [
+            Event(time=on_time, state="on"),
+            Event(time=off_time, state="off"),
+        ]
+        return Plan(info="fallback", events=events)

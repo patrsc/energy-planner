@@ -12,6 +12,7 @@ class Settings:
     storage_dir = os.environ.get("STORAGE_DIR", "data")
     timezone = "Europe/Vienna"
     price_repo_url = "https://github.com/patrsc/EPEX-AT-History.git"
+    fallback_deadline_seconds = 2 * 3600
 
 
 # Your customized PriceAdapter.
