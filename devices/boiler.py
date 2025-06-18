@@ -27,11 +27,11 @@ class Boiler(Device):
             Event(time=start_time + timedelta(hours=best_start_hour), state="on"),
             Event(time=start_time + timedelta(hours=best_end_hour), state="off"),
         ]
-        plan = Plan(info="optimal", events=events)
-        return plan
+        return Plan(info="optimal", events=events)
 
     def fallback_plan(self, start_time: datetime):
         """Make a fallback plan if no prices are available."""
+        # Turn on boiler from 12:00 for 3 hours
         on_time = start_time.replace(hour=12)
         off_time = on_time + timedelta(hours=3)
         events = [
