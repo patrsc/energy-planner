@@ -16,4 +16,23 @@ job every hour. This job:
 
 Connect to your Home Assistant with SSH. In the SSH session, do the following:
 
-* TODO
+* Change to the Add-ons directory:
+  ```
+  cd /addons
+  ```
+* Clone the repository:
+  ```
+  git clone https://github.com/patrsc/energy-planner.git
+  cd energy-planner
+  ```
+* Open the Home Assistant website
+* Go to *Settings → Add-ons*
+* Click *Add-on store* in the bottom right corner
+* On the top right overflow menu, click the *Check for updates* button
+* Refresh your webpage when needed
+* You should now see a new section at the top of the store called *Local add-ons* that lists the *Energy Planner* add-on
+* Click on it to go to the add-on details page.
+* Install the add-on (might take several minutes)
+* Start the add-on
+* Optionally turn on Watchdog
+* Check the logs of the addon if everything looks normal
