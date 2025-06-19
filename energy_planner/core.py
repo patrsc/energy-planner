@@ -5,8 +5,8 @@ from dataclasses import dataclass, asdict
 import os
 import logging
 
-from util import get_file, date_str, write_json, get_next_day_start, get_current_time
-from prices import PriceAdapter
+from .util import get_file, date_str, write_json, get_next_day_start, get_current_time
+from .prices import PriceAdapter
 
 logger = logging.getLogger(__name__)
 

@@ -1,6 +1,6 @@
 """Your custom configuration."""
-from devices.boiler import Boiler
-from prices import PriceAdapter
+from .devices.boiler import Boiler
+from .prices import PriceAdapter
 import os
 
 

@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from core import Device, Plan, Event
+from ..core import Device, Plan, Event
 
 
 class Boiler(Device):

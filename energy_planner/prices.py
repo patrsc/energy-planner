@@ -1,6 +1,6 @@
 import os
 from datetime import datetime
-from util import get_file, read_json, clone_repo, pull_repo
+from .util import get_file, read_json, clone_repo, pull_repo
 
 
 class PriceAdapter:

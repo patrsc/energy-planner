@@ -13,7 +13,7 @@ class ISOFormatter(logging.Formatter):
 
 
 def setup_logging(level=logging.DEBUG):
-    log_format = "{asctime} | {name:12} | {levelname:8} | {message}"
+    log_format = "{asctime} | {name:20} | {levelname:8} | {message}"
     formatter = ISOFormatter(fmt=log_format, style='{')
 
     handler = logging.StreamHandler()
