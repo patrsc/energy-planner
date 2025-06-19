@@ -1,0 +1,13 @@
+name: "Energy Planner"
+version: "1.0.0"
+slug: "energy_planner"
+description: "Plan when your devices should be switched on or off based on electricity price."
+startup: application
+boot: auto
+host_network: true
+init: false
+privileged: []
+map:
+  - config:rw
+options: {}
+schema: {}
