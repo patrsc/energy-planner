@@ -10,7 +10,7 @@ class Settings:
         Boiler('boiler'),
     ]
     storage_dir = os.environ.get("STORAGE_DIR", "data")
-    timezone = "Europe/Vienna"
+    timezone = os.environ.get("TZ", "Europe/Vienna")
     price_repo_url = "https://github.com/patrsc/EPEX-AT-History.git"
     fallback_deadline_seconds = 2 * 3600
 
