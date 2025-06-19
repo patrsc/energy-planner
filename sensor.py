@@ -18,7 +18,7 @@ from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 import statistics
 
-STORAGE_DIR = "data"
+STORAGE_DIR = "/config/data/energy_planner"
 TIMEZONE = "Europe/Vienna"
 
 
