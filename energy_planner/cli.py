@@ -4,7 +4,7 @@ from .log_config import setup_logging
 import logging
 
 
-def main():
+def main(start_time=None):
     try:
         setup_logging()
         logger = logging.getLogger(__name__)
@@ -16,7 +16,7 @@ def main():
             timezone=Settings.timezone,
             deadline_seconds=Settings.fallback_deadline_seconds,
         )
-        planner.plan()
+        planner.plan(start_time=start_time)
     except Exception as e:
         logger.exception(e)
         exit(1)

@@ -3,6 +3,8 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.triggers.cron import CronTrigger
 
 from energy_planner.cli import main
+from energy_planner.util import get_current_day_start
+from energy_planner.config import Settings
 
 
 if __name__ == "__main__":
@@ -12,5 +14,6 @@ if __name__ == "__main__":
     scheduler.add_job(main, CronTrigger(minute=0))
 
     # Run once at startup
-    main()
+    main(start_time=get_current_day_start(Settings.timezone))  # today
+    main()  # tomorrow
     scheduler.start()

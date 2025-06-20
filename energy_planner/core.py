@@ -5,7 +5,7 @@ from dataclasses import dataclass, asdict
 import os
 import logging
 
-from .util import get_file, date_str, write_json, get_next_day_start, get_current_time
+from .util import get_file, date_str, write_json, get_next_day_start, get_current_time, read_json
 from .prices import PriceAdapter
 
 logger = logging.getLogger(__name__)
@@ -83,13 +83,16 @@ class Planner:
         logger.info("Finished planing.")
 
     def has_deadline_passed(self, start_time: datetime) -> bool:
+        """Check if deadline has passed."""
         now = get_current_time(self.timezone)
         return now >= start_time - timedelta(seconds=self.deadline_seconds)
 
     def exists_plan(self, device_name: str, start_time: datetime) -> bool:
+        """Return True if plan exists for given device and start time."""
         return os.path.isfile(self.get_plan_file(device_name, start_time))
 
     def save_plan(self, device_name: str, start_time: datetime, plan: Plan):
+        """Save plan for device."""
         file = self.get_plan_file(device_name, start_time)
         plan_json = asdict(plan)
         for i, item in enumerate(plan_json['events']):
@@ -99,5 +102,29 @@ class Planner:
             os.makedirs(path, exist_ok=True)
         write_json(file, plan_json)
 
-    def get_plan_file(self, device_name: str, start_time: datetime) -> str:
-        return get_file(os.path.join(self.plans_dir, device_name), start_time)
+    def get_plan_file(self, device_name: str, time: datetime) -> str:
+        """Return plan file for device and time."""
+        return get_file(os.path.join(self.plans_dir, device_name), time)
+
+    def read_plan(self, device_name: str, time: datetime):
+        """Read plan for day of device."""
+        file = self.get_plan_file(device_name, time)
+        return read_json(file)
+
+    def get_device_plan(self, device_name: str, time: datetime):
+        """Return plan state ("on" or "off") for device at given time."""
+        data = self.read_plan(device_name, time)
+        default_state = "off"
+        events = data['events']
+        state = default_state
+        t = time.timestamp()
+        for event in events:
+            t_event = datetime.fromisoformat(event['time']).timestamp()
+            if t_event > t:
+                break
+            state = event['state']
+        return state
+
+    def get_device_info(self, device_name: str, time: datetime):
+        """Return plan info ("optimal" or "fallback") for device at given time."""
+        return self.read_plan(device_name, time)["info"]
