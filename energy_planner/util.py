@@ -23,8 +23,8 @@ def date_str(dt: datetime) -> str:
     return dt.strftime("%Y-%m-%d")
 
 
-def get_file(dir: str, start_time: datetime) -> str:
-    year, month, day = date_str(start_time).split("-")
+def get_file(dir: str, time: datetime) -> str:
+    year, month, day = date_str(time).split("-")
     return os.path.join(dir, year, month, f"{day}.json")
 
 

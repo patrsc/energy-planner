@@ -19,4 +19,7 @@ class Settings:
 class CustomPriceAdapter(PriceAdapter):
     """Custom price adapter."""
     # Here you could override some methods if needed.
-    pass
+
+    def transform(self, price: float) -> float:
+        """Account for fixed offset and tax."""
+        return (price + 1.5) * 1.2
