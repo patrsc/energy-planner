@@ -9,7 +9,7 @@ job every hour. This job:
 * Downloads the latest electricity prices
 * If prices are available for the next day it runs planning for your devices
 * Planning optimizes at what times your devices should be turned on and off on the next day
-* It saves the electricity prices and plans in `/config/data/energy-planner`
+* It saves the electricity prices and plans in `/config/data/energy_planner`
 * The files in that directory can then be used to create virtual sensors in Home Assistant that
   trigger your automation to turn your devices on and off
 
