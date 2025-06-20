@@ -15,7 +15,7 @@ def get_current_day_start(timezone: str) -> datetime:
     """Get 00:00:00 of current day in given timezone."""
     now = get_current_time(timezone)
     day_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
-    return day_start + timedelta(days=1)
+    return day_start
 
 
 def get_next_day_start(timezone: str) -> datetime:
