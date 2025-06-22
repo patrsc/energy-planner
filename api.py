@@ -45,10 +45,19 @@ def get_device_plan(device: str, date: str):
 
 
 @app.get("/api/prices/{date}")
-def get_prices(date: str) -> list[float] | None:
+def get_prices(date: str) -> list[dict] | None:
     """Get hourly prices for the given day as list or None."""
     price_adapter = CustomPriceAdapter(Settings.storage_dir, Settings.price_repo_url)
-    return price_adapter.get_hourly_prices(get_day_start_time(date))
+    day_start = get_day_start_time(date)
+    prices = price_adapter.get_hourly_prices(day_start)
+    if prices is None:
+        return None
+    return [{"time": iso_time(day_start, i), "price": p} for i, p in enumerate(prices)]
+
+
+def iso_time(start: datetime, hours: int):
+    """Get ISO timestamp using start time and offset in hours."""
+    return datetime.fromtimestamp(start.timestamp() + hours * 3600, tz=ZoneInfo(Settings.timezone))
 
 
 def get_day_start_time(date: str) -> datetime:
