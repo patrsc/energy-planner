@@ -1,5 +1,5 @@
 name: "Energy Planner"
-version: "1.0.0"
+version: "1.1.0"
 slug: "energy_planner"
 description: "Plan when your devices should be switched on or off based on electricity price"
 url: "https://github.com/patrsc/energy-planner"

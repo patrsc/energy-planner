@@ -1,7 +1,7 @@
 FROM python:3.13-slim
 
 RUN apt-get update
-RUN apt-get install -y bash git
+RUN apt-get install -y bash git nginx
 RUN pip install poetry
 
 WORKDIR /app
@@ -18,4 +18,6 @@ COPY run_scheduler.py .
 ENV STORAGE_DIR=/config/data/energy_planner
 ENV TZ=Europe/Vienna
 
-CMD ["poetry", "run", "python", "run_scheduler.py"]
+COPY ingress.conf /etc/nginx/http.d/
+
+CMD ["bash", "run.sh"]
