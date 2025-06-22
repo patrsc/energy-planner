@@ -19,5 +19,6 @@ ENV STORAGE_DIR=/config/data/energy_planner
 ENV TZ=Europe/Vienna
 
 COPY ingress.conf /etc/nginx/http.d/
+COPY run.sh .
 
 CMD ["bash", "run.sh"]
