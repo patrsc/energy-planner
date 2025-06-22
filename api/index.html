@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Energy Planner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<h1>Energy Planner</h1>
+<pre id="content"></pre>
+
+</body>
+</html>
+
+<script>
+async function main() {
+    const data = await fetchData()
+    const element = document.getElementById("content")
+    element.innerHTML = JSON.stringify(data)
+}
+
+async function fetchData() {
+    try {
+        const response = await fetch('/api');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        alert('Error fetching data:', error);
+        return null;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    main()
+})
+</script>
