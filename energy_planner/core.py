@@ -23,8 +23,9 @@ class Plan:
 
 
 class Device:
-    def __init__(self, name: str, **kwargs):
+    def __init__(self, name: str, pretty_name=None, **kwargs):
         self.name = name
+        self.pretty_name = pretty_name or name
 
     @abstractmethod
     def plan(self, start_time: datetime, prices: list[float] | None) -> Plan:

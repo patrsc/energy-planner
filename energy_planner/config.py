@@ -1,4 +1,5 @@
 """Your custom configuration."""
+from .core import Device
 from .devices.boiler import Boiler
 from .prices import PriceAdapter
 import os
@@ -6,8 +7,8 @@ import os
 
 # Your custom settings that you can overwrite
 class Settings:
-    devices = [
-        Boiler('boiler'),
+    devices: list[Device] = [
+        Boiler('boiler', pretty_name='Boiler'),
     ]
     storage_dir = os.environ.get("STORAGE_DIR", "data")
     timezone = os.environ.get("TZ", "Europe/Vienna")

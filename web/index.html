@@ -22,7 +22,7 @@ async function main() {
 
 async function fetchData() {
     try {
-        const response = await fetch('api');
+        const response = await fetch('api/devices');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
