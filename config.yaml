@@ -20,3 +20,4 @@ options: {}
 schema: {}
 ingress: true
 panel_icon: mdi:home-lightning-bolt-outline
+panel_admin: false
