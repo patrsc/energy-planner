@@ -14,12 +14,13 @@ RUN poetry install --no-root
 COPY energy_planner energy_planner
 COPY run_planner.py .
 COPY run_scheduler.py .
+COPY api.py .
 
 ENV STORAGE_DIR=/config/data/energy_planner
 ENV TZ=Europe/Vienna
 
 COPY ingress.conf /etc/nginx/conf.d/
-COPY api api
+COPY web web
 
 COPY run.sh .
 

@@ -7,7 +7,7 @@ app = FastAPI(title="Energy Planner")
 
 @app.get("/")
 def read_root():
-    return FileResponse("api/index.html", media_type="text/html")
+    return FileResponse("web/index.html", media_type="text/html")
 
 
 @app.get("/api")
