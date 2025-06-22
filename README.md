@@ -54,6 +54,9 @@ data, 2 hours before the "deadline" 0:00 a fallback plan will be computed for th
 * Optionally turn on Watchdog
 * Check the logs of the addon if everything looks normal
 
+You can also see the web user interface by clicking on *Open web UI*. The web UI can also be
+added to the sidebar if desired by enabling the option *Show in sidebar*.
+
 ## Automate
 
 ### Sensors
