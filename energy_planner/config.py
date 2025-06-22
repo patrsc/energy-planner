@@ -9,8 +9,6 @@ import os
 class Settings:
     devices: list[Device] = [
         Boiler('boiler', pretty_name='Boiler'),
-        Boiler('boiler2', pretty_name='Boiler 2'),
-        Boiler('boiler3', pretty_name='Boiler 3'),
     ]
     storage_dir = os.environ.get("STORAGE_DIR", "data")
     timezone = os.environ.get("TZ", "Europe/Vienna")
