@@ -273,6 +273,7 @@ function updateChart(prices, plan) {
             type: 'date',
             tickformat: '%H:%M',
         },
+        font: {size: 10},
         yaxis: {
             title: 'Price (cent/kWh)',
             tickprefix: '',
@@ -281,12 +282,22 @@ function updateChart(prices, plan) {
         hovermode: 'x',
         legend: {
             orientation: 'h',
-            y: 1.1,
+            y: 1.2,
             x: 0.5,
             xanchor: 'center',
         },
         showlegend: true,
-        responsive: true
+        responsive: true,
+        height: Math.min(450, window.innerWidth * 0.6),
+    }
+    if (getDarkMode()) {
+        layout.paper_bgcolor = "#212529"
+        layout.plot_bgcolor = "#212529"
+        layout.font.color = "#dee2e6"
+        layout.xaxis.color = "#dee2e6"
+        layout.xaxis.gridcolor = "#333"
+        layout.yaxis.color = "#dee2e6"
+        layout.yaxis.gridcolor = "#333"
     }
     let traces = [priceTrace]
 
@@ -326,8 +337,11 @@ function updateChart(prices, plan) {
         }
         traces = [priceTrace, stateTrace]
     }
-
-    Plotly.newPlot('chart', traces, layout, {responsive: true});
+    const config = {
+        displayModeBar: false,
+        responsive: true,
+    }
+    Plotly.newPlot('chart', traces, layout, config);
 }
 
 function getISOLocalString(date) {
